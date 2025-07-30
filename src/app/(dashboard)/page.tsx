@@ -2,7 +2,6 @@ import { auth } from "@/lib/auth";
 import { HomeView } from "../modules/home/ui/views/home-view";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { DashboardSidebar } from "../modules/dashboard/ui/components/dashboard-sidebar";
 
 const Page = async () => {
   const session = await auth.api.getSession({
@@ -11,7 +10,7 @@ const Page = async () => {
   if (!session) {
     redirect("/sign-in");
   }
-  return <DashboardSidebar />;
+  return <HomeView />;
 };
 
 export default Page;
