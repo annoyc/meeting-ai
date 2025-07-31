@@ -21,12 +21,12 @@ import { DashboardUserButton } from "./dashboard-user-button";
 
 const firstSection = [
   {
-    label: "Meetings",
+    label: "会议",
     icon: VideoIcon,
     href: "/meetings",
   },
   {
-    label: "Agents",
+    label: "代理机器人",
     icon: BotIcon,
     href: "/agents",
   },
@@ -34,7 +34,7 @@ const firstSection = [
 
 const secondSection = [
   {
-    label: "Upgrage",
+    label: "升级",
     icon: StarIcon,
     href: "/upgrage",
   },

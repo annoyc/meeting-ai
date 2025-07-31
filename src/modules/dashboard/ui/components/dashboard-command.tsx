@@ -13,7 +13,7 @@ interface DashboardCommandProps {
 export const DashboardCommand = ({ open, setOpen }: DashboardCommandProps) => {
   return (
     <CommandResponsiveDialog open={open} onOpenChange={setOpen}>
-      <CommandInput placeholder="Find a meeting or agent" />
+      <CommandInput placeholder="搜索会议或代理机器人" />
       <CommandList>
         <CommandItem>Test</CommandItem>
       </CommandList>

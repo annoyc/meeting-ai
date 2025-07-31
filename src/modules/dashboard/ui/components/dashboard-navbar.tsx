@@ -39,7 +39,7 @@ export const DashboardNavbar = () => {
           onClick={() => setCommandOpen((open) => !open)}
         >
           <SearchIcon />
-          Search
+          搜索
           <kbd className="ml-auto flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[0.625rem] font-medium opacity-100 text-muted-foreground">
             <span className="text-xs">⌘</span>K
           </kbd>
