@@ -12,10 +12,10 @@ export const AgentsListHeader = () => {
       <NewAgentDialog open={open} onOpenChange={setOpen} />
       <div className="p-4 md:px-8 flex flex-col gap-y-4">
         <div className="flex items-center justify-between">
-          <h5 className="text-xl font-medium">我的代理机器人</h5>
+          <h5 className="text-xl font-medium">我的会话智能体</h5>
           <Button onClick={() => setOpen(true)}>
             <PlusIcon />
-            创建代理机器人
+            创建会话智能体
           </Button>
         </div>
       </div>

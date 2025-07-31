@@ -12,7 +12,7 @@ export const NewAgentDialog = ({ open, onOpenChange }: NewAgentDialogProps) => {
       open={open}
       onOpenChange={onOpenChange}
       title="新增"
-      description="新增代理机器人"
+      description="新增会话智能体"
     >
       <AgentForm
         onCancel={() => onOpenChange(false)}

@@ -19,7 +19,6 @@ export const GeneratedAvatar = ({
     variant === "botttsNeutral" ? botttsNeutral : initials,
     {
       seed,
-      backgroundColor: ["#fafafa", "#eaeaea", "#dadada"],
       size: 128,
     }
   );

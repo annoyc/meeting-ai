@@ -26,7 +26,7 @@ const firstSection = [
     href: "/meetings",
   },
   {
-    label: "代理机器人",
+    label: "会话智能体",
     icon: BotIcon,
     href: "/agents",
   },
