@@ -9,7 +9,11 @@ export const AgentsView = () => {
   const trpc = useTRPC();
   const { data } = useSuspenseQuery(trpc.agents.getMany.queryOptions());
   console.log("AgentsView data", data);
-  return <p>agent view</p>;
+  return (
+    <div>
+      <h1>hello</h1>
+    </div>
+  );
 };
 
 export const AgentsLoadingView = () => {
