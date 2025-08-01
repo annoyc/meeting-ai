@@ -7,23 +7,29 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { DataTable } from "./data-table";
 import { columns } from "./columns";
 import { EmptyState } from "@/components/empty-state";
+import { useAgentsFilters } from "../../hooks/use-agents-filters";
+import { DataPagination } from "../components/data-pagination";
 
 export const AgentsView = () => {
+  const [filters, setFilters] = useAgentsFilters();
   const trpc = useTRPC();
   const { data } = useSuspenseQuery(
-    trpc.agents.getMany.queryOptions({ pageSize: 3 })
+    trpc.agents.getMany.queryOptions({ ...filters })
   );
-  console.log("AgentsView data", data);
 
   return (
     <div className="flex-1 pb-4 px-4 md:px-8 flex flex-col gap-y-4">
-      {!data.items.length ? (
+      <DataTable columns={columns} data={data.items} />
+      <DataPagination
+        totalPages={data.totalPages}
+        page={filters.page}
+        onPageChange={(page) => setFilters({ page })}
+      />
+      {!data.items.length && (
         <EmptyState
           title="创建你的会话智能体"
           description="创建一个对话智能体加入您的会议室，每个智能体在通话时将按照您的指令与参与者进行对话"
         />
-      ) : (
-        <DataTable columns={columns} data={data.items} />
       )}
     </div>
   );
