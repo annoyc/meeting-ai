@@ -10,18 +10,20 @@ import { EmptyState } from "@/components/empty-state";
 
 export const AgentsView = () => {
   const trpc = useTRPC();
-  const { data } = useSuspenseQuery(trpc.agents.getMany.queryOptions());
+  const { data } = useSuspenseQuery(
+    trpc.agents.getMany.queryOptions({ pageSize: 3 })
+  );
   console.log("AgentsView data", data);
 
   return (
     <div className="flex-1 pb-4 px-4 md:px-8 flex flex-col gap-y-4">
-      {!data.length ? (
+      {!data.items.length ? (
         <EmptyState
           title="创建你的会话智能体"
           description="创建一个对话智能体加入您的会议室，每个智能体在通话时将按照您的指令与参与者进行对话"
         />
       ) : (
-        <DataTable columns={columns} data={data} />
+        <DataTable columns={columns} data={data.items} />
       )}
     </div>
   );
