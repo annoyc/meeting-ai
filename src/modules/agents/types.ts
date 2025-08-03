@@ -3,6 +3,7 @@ import { inferRouterOutputs } from "@trpc/server";
 
 export type AgentGetOne = inferRouterOutputs<AppRouter>["agents"]["getOne"];
 
-export type AgentGetMany = inferRouterOutputs<AppRouter>["agents"]["getMany"];
+export type AgentGetMany =
+  inferRouterOutputs<AppRouter>["agents"]["getMany"]["items"];
 
 export type AgentCreateOne = inferRouterOutputs<AppRouter>["agents"]["create"];
