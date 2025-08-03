@@ -1,10 +1,10 @@
 "use client";
 
-import { AgentGetOne } from "@/app/(dashboard)/agents/types";
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { Badge } from "@/components/ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
 import { CornerDownRightIcon, VideoIcon } from "lucide-react";
+import { AgentGetOne } from "../../types";
 
 export const columns: ColumnDef<AgentGetOne>[] = [
   {

@@ -1,7 +1,6 @@
 "use client";
 import z from "zod";
 import { useTRPC } from "@/trpc/client";
-import { AgentGetOne } from "../../types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { agentsInsertSchema } from "@/modules/agents/schemas";
@@ -20,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { AgentGetOne } from "../../types";
 
 interface AgentFormProps {
   onSuccess?: () => void;
@@ -90,14 +90,14 @@ export const AgentForm = ({
         },
         {
           onSuccess: () => {
-            form.reset();
+            // form.reset();
           },
         }
       );
     } else {
       createAgent.mutate(values, {
         onSuccess: () => {
-          form.reset();
+          // form.reset();
         },
       });
     }

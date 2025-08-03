@@ -14,8 +14,8 @@ import { VideoIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useConfirm } from "@/hooks/use-confirm";
-import { UpdateAgentDialog } from "@/app/(dashboard)/agents/ui/components/update-agent-dialog";
 import { useState } from "react";
+import { UpdateAgentDialog } from "../components/update-agent-dialog";
 
 interface Props {
   agentId: string;
