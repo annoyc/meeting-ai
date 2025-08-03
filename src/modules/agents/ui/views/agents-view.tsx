@@ -42,9 +42,13 @@ export const AgentsView = () => {
 };
 
 export const AgentsLoadingView = () => {
-  return <LoadingState title="加载中" description="数据正在全速加载中..." />;
+  return (
+    <LoadingState title="智能体加载中" description="数据正在全速加载中..." />
+  );
 };
 
 export const AgentsErrorView = () => {
-  return <ErrorState title="加载失败" description="数据加载失败，请稍后再试" />;
+  return (
+    <ErrorState title="智能体加载失败" description="数据加载失败，请稍后再试" />
+  );
 };
