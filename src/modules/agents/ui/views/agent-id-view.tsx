@@ -103,12 +103,18 @@ export const AgentIdView = ({ agentId }: Props) => {
 
 export const AgentIdLoadingView = () => {
   return (
-    <LoadingState title="详情加载中" description="数据正在全速加载中..." />
+    <LoadingState
+      title="智能体详情加载中"
+      description="数据正在全速加载中..."
+    />
   );
 };
 
 export const AgentIdErrorView = () => {
   return (
-    <ErrorState title="详情加载失败" description="数据加载失败，请稍后再试" />
+    <ErrorState
+      title="智能体详情加载失败"
+      description="数据加载失败，请稍后再试"
+    />
   );
 };

@@ -8,7 +8,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { EmptyState } from "@/components/empty-state";
 import { DataPagination } from "@/components/data-pagination";
 import { useRouter } from "next/navigation";
-import { columns } from "./columns";
+import { columns } from "../components/columns";
 import { useMeetingsFilters } from "../../hooks/use-meetings-filters";
 
 export const MeetingsView = () => {
