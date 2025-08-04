@@ -149,7 +149,7 @@ export const MeetingForm = ({
                     options={(agents.data?.items ?? []).map((agent) => ({
                       id: agent.id,
                       value: agent.id,
-                      chidldren: (
+                      children: (
                         <div className="flex items-center gap-x-2">
                           <GeneratedAvatar
                             seed={agent.name}

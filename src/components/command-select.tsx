@@ -15,7 +15,7 @@ interface Props {
   options: Array<{
     id: string;
     value: string;
-    chidldren: ReactNode;
+    children: ReactNode;
   }>;
   onSelect: (value: string) => void;
   onSearch?: (value: string) => void;
@@ -36,6 +36,11 @@ export const CommandSelect = ({
   const [open, setOpen] = useState(false);
   const selectedOption = options.find((option) => option.value === value);
 
+  const handleOpenChange = (value: boolean) => {
+    onSearch?.("");
+    setOpen(value);
+  };
+
   return (
     <>
       <Button
@@ -48,13 +53,13 @@ export const CommandSelect = ({
           className
         )}
       >
-        <div>{selectedOption?.chidldren ?? placeholder}</div>
+        <div>{selectedOption?.children ?? placeholder}</div>
         <ChevronsUpDownIcon />
       </Button>
       <CommandResponsiveDialog
         shouldFilter={!onSearch}
         open={open}
-        onOpenChange={setOpen}
+        onOpenChange={handleOpenChange}
       >
         <CommandInput placeholder={placeholder} onValueChange={onSearch} />
         <CommandList>
@@ -70,7 +75,7 @@ export const CommandSelect = ({
                 setOpen(false);
               }}
             >
-              {option.chidldren}
+              {option.children}
             </CommandItem>
           ))}
         </CommandList>
