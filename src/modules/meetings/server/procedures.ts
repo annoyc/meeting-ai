@@ -10,14 +10,14 @@ import {
   MIN_PAGE_SIZE,
 } from "@/constants";
 import { TRPCError } from "@trpc/server";
-import { streamClient } from "@/lib/stream-video";
+import { streamVideo } from "@/lib/stream-video";
 import { generateAvatarUri } from "@/lib/avatar";
 import { meetingsInsertSchema, meetingsUpdateSchema } from "../schemas";
 import { MeetingStatus } from "../types";
 
 export const meetingsRouter = createTRPCRouter({
   generateToken: protectedProcedure.mutation(async ({ ctx }) => {
-    await streamClient.upsertUsers([
+    await streamVideo.upsertUsers([
       {
         id: ctx.session.user.id,
         name: ctx.session.user.name,
@@ -32,7 +32,7 @@ export const meetingsRouter = createTRPCRouter({
     ]);
     // const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60; // 1 hour
     // const issuedAt = Math.floor(Date.now() / 1000) - 60;
-    const token = streamClient.generateUserToken({
+    const token = streamVideo.generateUserToken({
       user_id: ctx.session.user.id,
       // exp: expirationTime,
       // validity_in_seconds: issuedAt,
@@ -91,7 +91,7 @@ export const meetingsRouter = createTRPCRouter({
         })
         .returning();
 
-      const call = streamClient.video.call("default", createdMeeting.id);
+      const call = streamVideo.video.call("default", createdMeeting.id);
       await call.create({
         data: {
           created_by_id: ctx.session.user.id,
@@ -124,7 +124,7 @@ export const meetingsRouter = createTRPCRouter({
         });
       }
 
-      await streamClient.upsertUsers([
+      await streamVideo.upsertUsers([
         {
           id: existingAgent.id,
           name: existingAgent.name,
