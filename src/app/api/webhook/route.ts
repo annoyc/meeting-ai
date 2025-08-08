@@ -2,8 +2,11 @@ import { db } from "@/db";
 import { agents, meetings } from "@/db/schema";
 import { streamVideo } from "@/lib/stream-video";
 import { MeetingStatus } from "@/modules/meetings/types";
-import { CallSessionStartedEvent } from "@stream-io/node-sdk";
-import { and, eq, not } from "drizzle-orm";
+import {
+  CallSessionStartedEvent,
+  CallSessionParticipantLeftEvent,
+} from "@stream-io/node-sdk";
+import { and, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 function verifySignatureWithSDK(body: string, signature: string) {
@@ -42,7 +45,7 @@ export async function POST(request: NextRequest) {
     const meetingId = event.call.custom?.meetingId;
     if (!meetingId) {
       return NextResponse.json({
-        message: "未找到会议ID",
+        message: "会议ID必填",
         status: 400,
       });
     }
@@ -80,6 +83,26 @@ export async function POST(request: NextRequest) {
       });
     }
     const call = streamVideo.video.call("default", meetingId);
+    const realtimeClient = await streamVideo.video.connectOpenAi({
+      call,
+      openAiApiKey: process.env.OPENAI_API_KEY!,
+      agentUserId: existingAgent.id,
+      model: "gpt-4o-realtime-preview",
+    });
+    realtimeClient.updateSession({
+      instructions: existingAgent.instructions,
+    });
+  } else if (eventType === "call.session_participant_left") {
+    const event = payload as CallSessionParticipantLeftEvent;
+    const meetingId = event.call_cid.split(":")[1];
+    if (!meetingId) {
+      return NextResponse.json({
+        message: "会议ID必填",
+        status: 400,
+      });
+    }
+    const call = streamVideo.video.call("default", meetingId);
+    await call.end();
   }
 
   return NextResponse.json({
