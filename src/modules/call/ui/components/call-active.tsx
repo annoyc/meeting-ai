@@ -8,15 +8,6 @@ interface Props {
 }
 
 export const CallActive = ({ onLeave, meetingName }: Props) => {
-  // const { data, isPending } = authClient.useSession();
-  // if (!data || isPending) {
-  //   return (
-  //     <div className="flex h-screen items-center justify-center bg-radial from-sidebar-accent to-sidebar">
-  //       <Loader2Icon className="size-6 text-white animate-spin" />
-  //     </div>
-  //   )
-  // }
-
   return (
     <div className="flex flex-col justify-between p-4 h-full text-white">
       <div className="bg-[#101213] rounded-full p-4 flex items-center gap-4">
