@@ -30,9 +30,11 @@ const Page = async ({ searchParams }: Props) => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
   if (!session) {
     redirect("/sign-in");
   }
+
   return (
     <>
       <MeetingsListHeader />
