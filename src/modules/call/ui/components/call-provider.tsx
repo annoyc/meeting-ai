@@ -2,8 +2,9 @@
 
 import { LoaderIcon } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
-import { CallConnect } from "./call-connect";
-import { generateAvatarUri } from "@/lib/avatar";
+import { DoubaoCallView } from "../views/doubao-call-view";
+// import { CallConnect } from "./call-connect";
+// import { generateAvatarUri } from "@/lib/avatar";
 
 interface Props {
   meetingId: string;
@@ -20,16 +21,5 @@ export const CallProvider = ({ meetingId, meetingName }: Props) => {
     );
   }
 
-  return (
-    <CallConnect
-      meetingId={meetingId}
-      meetingName={meetingName}
-      userId={data.user.id}
-      userName={data.user.name}
-      userImage={
-        data.user.image ??
-        generateAvatarUri({ seed: data.user.name, variant: "initials" })
-      }
-    />
-  );
+  return <DoubaoCallView meetingId={meetingId} meetingName={meetingName} />;
 };
